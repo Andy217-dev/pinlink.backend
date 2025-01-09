@@ -34,13 +34,18 @@ router.get('/nonce', async (req, res) => {
 		console.log(e)
 	}
 })
-// router.post('/', async (req, res) => {
-// 	try {
-// 		return res.send('0:{"a":"$@1","f":"","b":"hMiFO0QGNmXAvekM9nnfN"}\n1:"gpt-4o-mini"');
-// 	} catch (e) {
-// 		console.log(e)
-// 	}
-// })
+
+router.post('/auth/login', async (req, res) => {
+	console.log(req.body)
+	try {
+		const resp = await axios.get("https://pinlink.ai/api/auth/login", req.body)
+		const { data } = resp;
+		console.log(data)
+		return res.send(data);
+	} catch (e) {
+		console.log(e)
+	}
+})
 
 
 module.exports = router
